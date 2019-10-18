@@ -1,0 +1,2 @@
+[run]
+omit = treasure_hunt/tests/*
