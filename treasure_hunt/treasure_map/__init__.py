@@ -24,13 +24,21 @@ def _transform_raw_map(raw_inp: str, n: int = 5) -> typ.Tuple[typ.Tuple[int, ...
     flat_map = list(map(int, re.findall(r'\d+', raw_inp)))
 
     if not 1 <= n < 9:
-        raise WrongInputDataError(f'Number of columns/rows in the input map should be between 1 and 9')
+        raise WrongInputDataError(
+            f'Number of columns/rows in the input map '
+            f'should be between 1 and 9')
     if not flat_map:
         raise WrongInputDataError(f'No digits found in the input: {raw_inp!r}')
     if len(flat_map) != n * n:
-        raise WrongInputDataError(f'Treasure map cells number should be {n * n}, got {len(flat_map)} instead')
-    if not all(1 <= number // 10 <= n and 1 <= number % 10 <= n for number in flat_map):
-        raise WrongInputDataError(f'Each cell should contains a number with ten’s and unit’s between 1 and {n}')
+        raise WrongInputDataError(
+            f'Treasure map cells number should be {n * n}, '
+            f'got {len(flat_map)} instead')
+    if not all(1 <= number // 10 <= n
+               and 1 <= number % 10 <= n
+               for number in flat_map):
+        raise WrongInputDataError(
+            f'Each cell should contains a number with ten’s '
+            f'and unit’s between 1 and {n}')
 
     return tuple(tuple(flat_map[i:i + n]) for i in range(0, len(flat_map), n))
 

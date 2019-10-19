@@ -26,17 +26,24 @@ from treasure_hunt import func_implement, oop_implement
 from treasure_hunt.treasure_map import get_treasure_map_from_file
 
 
-FIND_TREASURE_IMPLEMENTATIONS = {
+TREASURE_PATH_SEARCH_IMPLEMENTATIONS = {
     'func': func_implement.find_treasure,
     'oop': oop_implement.find_treasure,
 }
 
 
-if __name__ == '__main__':
+def main():
+    """
+    Entry point. Requires some input CLI arguments to run the project
+    It will run :meth:`treasure_hunt.func_implement.find_treasure` or
+    :meth:`treasure_hunt.oop_implement.find_treasure` if everything is ok
+
+    :return:
+    """
     parser = argparse.ArgumentParser(description="Treasure Hunt", allow_abbrev=False)
     parser.add_argument(
         'implement',
-        choices=FIND_TREASURE_IMPLEMENTATIONS,
+        choices=TREASURE_PATH_SEARCH_IMPLEMENTATIONS,
         help='choose the implementation',
         default='func',
         const='func',
@@ -44,7 +51,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     treasure_map = get_treasure_map_from_file()
+    print('Implementation:', args.implement)
     print('Input:', treasure_map)
 
-    find_treasure = FIND_TREASURE_IMPLEMENTATIONS[args.implement]
+    find_treasure = TREASURE_PATH_SEARCH_IMPLEMENTATIONS[args.implement]
     print('Output:', find_treasure(treasure_map))
+
+
+if __name__ == '__main__':
+    main()

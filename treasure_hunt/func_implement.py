@@ -1,40 +1,36 @@
+"""
+Implementation using functional programming approach
+"""
+
 import typing as typ
+
+from treasure_hunt.utils import list_to_str
 
 
 def _make_treasure_path(treasure_map: typ.Tuple[typ.Tuple[int, ...], ...],
-                        curr_i: int = 1, curr_j: int = 1) -> typ.List[int]:
+                        curr_row: int = 1, curr_col: int = 1) -> typ.List[int]:
     """
     Recursion functional implementation of treasure search
 
-    :param treasure_map: treasure path
-    :param curr_i: current row
-    :param curr_j: current column
+    :param treasure_map: treasure map input
+    :param curr_row: current row
+    :param curr_col: current column
     :return: treasure path
     :raise RecursionError: if loops found in the input treasure map
     """
-    res = [curr_i * 10 + curr_j]
-    next_i, next_j = divmod(treasure_map[curr_i - 1][curr_j - 1], 10)
-    if (curr_i, curr_j) == (next_i, next_j):
+    res = [curr_row * 10 + curr_col]
+    next_row, next_col = divmod(treasure_map[curr_row - 1][curr_col - 1], 10)
+    if (curr_row, curr_col) == (next_row, next_col):
         return res
-    return res + _make_treasure_path(treasure_map, curr_i=next_i, curr_j=next_j)
-
-
-def _list_to_str(data: typ.Union[tuple, list]) -> str:
-    """
-    Convert list with some data to space separated string
-
-    :param data: list with data
-    :return: space separated string
-    """
-    return ' '.join(map(str, data))
+    return res + _make_treasure_path(treasure_map, curr_row=next_row, curr_col=next_col)
 
 
 def find_treasure(treasure_map: typ.Tuple[typ.Tuple[int, ...], ...]) -> str:
     """
     Find the treasure path
 
-    :param treasure_map: treasure path
-    :return: treasure path or error message
+    :param treasure_map: treasure map input
+    :return: treasure path
     :raise RecursionError: if loops found in the treasure map input
     """
     try:
@@ -43,4 +39,4 @@ def find_treasure(treasure_map: typ.Tuple[typ.Tuple[int, ...], ...]) -> str:
         err.args = ('Loops found in the treasure map input',) + err.args[1:]
         raise
     else:
-        return _list_to_str(result)
+        return list_to_str(result)
