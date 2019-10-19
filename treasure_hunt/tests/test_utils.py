@@ -14,6 +14,7 @@ def test_list_to_str(inp, expected_str):
 
 
 @pytest.mark.parametrize('inp', [
+    [],
     43,
     2 + 3j,
     {'django': 'aiohttp?'},
