@@ -51,3 +51,6 @@ test-cov:
 
 run:
 	python run.py
+
+run-oop:
+	python run.py oop

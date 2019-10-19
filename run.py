@@ -20,9 +20,31 @@ Output example:
 11 55 15 21 44 32 13 25 43
 """
 
+import argparse
+
+from treasure_hunt import func_implement, oop_implement
 from treasure_hunt.treasure_map import get_treasure_map_from_file
 
 
+FIND_TREASURE_IMPLEMENTATIONS = {
+    'func': func_implement.find_treasure,
+    'oop': oop_implement.find_treasure,
+}
+
+
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Treasure Hunt", allow_abbrev=False)
+    parser.add_argument(
+        'implement',
+        choices=FIND_TREASURE_IMPLEMENTATIONS,
+        help='choose the implementation',
+        default='func',
+        const='func',
+        nargs='?')
+    args = parser.parse_args()
+
     treasure_map = get_treasure_map_from_file()
-    print(treasure_map)
+    print('Input:', treasure_map)
+
+    find_treasure = FIND_TREASURE_IMPLEMENTATIONS[args.implement]
+    print('Output:', find_treasure(treasure_map))
