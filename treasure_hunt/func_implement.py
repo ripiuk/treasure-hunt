@@ -18,6 +18,7 @@ def _make_treasure_path(treasure_map: typ.Tuple[typ.Tuple[int, ...], ...],
     :return: treasure path
     :raise RecursionError: if loops found in the input treasure map
     """
+    # TODO: replace RecursionError with counter
     res = [curr_row * 10 + curr_col]
     next_row, next_col = divmod(treasure_map[curr_row - 1][curr_col - 1], 10)
     if (curr_row, curr_col) == (next_row, next_col):

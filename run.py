@@ -35,8 +35,8 @@ TREASURE_PATH_SEARCH_IMPLEMENTATIONS = {
 def main():
     """
     Entry point. Requires some input CLI arguments to run the project
-    It will run :meth:`treasure_hunt.func_implement.find_treasure` or
-    :meth:`treasure_hunt.oop_implement.find_treasure` if everything is ok
+    It will run :func:`treasure_hunt.func_implement.find_treasure` or
+    :func:`treasure_hunt.oop_implement.find_treasure` if everything is ok
 
     :return:
     """

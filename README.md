@@ -34,7 +34,7 @@ Install python, create virtual environment and install all the requirements:
 
 Run the program with selected implementation:
 
-* Functional programming implementation:
+* Implementation using functional programming approach:
 
         python run.py func
         # or
@@ -51,10 +51,10 @@ Run the program with selected implementation:
 
 #### How to run tests
 
-Run the tests:
+Run tests:
 
     make test
 
-Check the tests coverage:
+Check tests coverage:
 
     make test-cov
